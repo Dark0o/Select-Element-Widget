@@ -32,6 +32,17 @@ function App() {
     }
   };
 
+  const filtered = elements
+    .filter((el) => el.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((el) => {
+      if (filterValue === "100") return el.id > 100;
+      if (filterValue === "2500") return el.id > 2500;
+      if (filterValue === "10000") return el.id > 10000;
+      return true;
+    });
+
+  console.log("filtered", filtered);
+
   console.log(elements);
   return (
     <>
@@ -74,7 +85,7 @@ function App() {
             </label>
           </div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {elements.map((element) => (
+            {filtered.map((element) => (
               <li key={element.id}>
                 <label>
                   <input
