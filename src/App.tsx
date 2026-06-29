@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-const elements = Array.from({ length: 100 }, (_, i) => ({
+interface ElementItem {
+  id: number;
+  name: string;
+}
+
+const elements: ElementItem[] = Array.from({ length: 100 }, (_, i) => ({
   id: i,
   name: `Element ${i + 1}`,
 }));
@@ -10,10 +15,10 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
 
-  const [selectedElements, setSelectedElements] = useState([]);
+  const [selectedElements, setSelectedElements] = useState<ElementItem[]>([]);
   console.log("Selected elements:", selectedElements);
 
-  const toggleItem = (element) => {
+  const toggleItem = (element: ElementItem) => {
     console.log("adding", element);
     const isSelected = selectedElements.some((el) => el.id === element.id);
 
