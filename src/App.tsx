@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const elements = Array.from({ length: 100 }, (_, i) => ({
+  id: i,
+  name: `Element ${i + 1}`,
+}));
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,8 +15,16 @@ function App() {
       <button onClick={() => setIsOpen(!isOpen)}>Change my choice</button>
 
       {isOpen && (
-        <div>
+        <div
+          style={{
+            border: "1px solid black",
+            height: "500px",
+            padding: "8px",
+            overflowY: "scroll",
+          }}
+        >
           <h3>Select items</h3>
+
           <div style={{ display: "flex", gap: "16px", marginBottom: "8px" }}>
             <label>
               Search
@@ -35,6 +48,15 @@ function App() {
               </select>
             </label>
           </div>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {elements.map((el) => (
+              <li key={el.id}>
+                <label>
+                  <input type="checkbox" /> {el.name}
+                </label>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>
