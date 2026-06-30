@@ -1,11 +1,11 @@
 import { type RowComponentProps } from "react-window";
-import type { ElementItem } from "../store/SelectElementWidgetStore";
+import type { ElementItemType } from "../store/SelectElementWidgetStore";
 
 interface RowProps {
-  elements: ElementItem[];
+  elements: ElementItemType[];
   isItemSelected: (id: number) => boolean;
-  toggleItem: (element: ElementItem) => void;
-  tempSelectedElements: ElementItem[];
+  toggleItem: (element: ElementItemType) => void;
+  tempSelectedElements: ElementItemType[];
 }
 
 const RowComponent = ({

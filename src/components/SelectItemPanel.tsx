@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 import { useSelectElementWidgetStore } from "../store/SelectElementWidgetStore";
-import type { ElementItem } from "../store/SelectElementWidgetStore";
+import type { ElementItemType } from "../store/SelectElementWidgetStore";
+import ElementItem from "./ElementItem";
 
 import { List } from "react-window";
-import { useListRef } from "react-window";
 
 import RowComponent from "./RowComponent";
 
@@ -11,13 +11,11 @@ const SelectItemPanel = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
 
-  const listRef = useListRef(null);
-
   const { elements, selectedElements, setSelectedElements, setIsPanelOpen } =
     useSelectElementWidgetStore();
 
   const [tempSelectedElements, setTempSelectedElements] = useState<
-    ElementItem[]
+    ElementItemType[]
   >([...selectedElements]);
 
   const handleSave = () => {
@@ -34,7 +32,7 @@ const SelectItemPanel = () => {
   const isItemSelected = (id: number) =>
     tempSelectedElements.some((el) => el.id === id);
 
-  const toggleItem = (element: ElementItem) => {
+  const toggleItem = (element: ElementItemType) => {
     console.log("adding", element);
     const isSelected = isItemSelected(element.id);
 
@@ -58,12 +56,6 @@ const SelectItemPanel = () => {
         return true;
       });
   }, [elements, searchTerm, filterValue]);
-
-  const scrollToItem = (id: number) => {
-    const index = filtered.findIndex((el) => el.id === id);
-
-    listRef.current?.scrollToRow({ index });
-  };
 
   return (
     <div
@@ -128,18 +120,21 @@ const SelectItemPanel = () => {
               toggleItem,
               tempSelectedElements,
             }}
-            listRef={listRef}
           />
         )}
       </div>
 
       <div style={{ padding: "16px", borderTop: "1px solid black" }}>
         Current selected items:
-        {tempSelectedElements.map((el) => (
-          <span key={el.id}>
-            {el.name} <button onClick={() => scrollToItem(el.id)}>Find</button>
-          </span>
-        ))}
+        <div style={{ display: "flex", gap: "8px", margin: "8px 0" }}>
+          {tempSelectedElements.map((el) => (
+            <ElementItem
+              key={el.id}
+              name={el.name}
+              onRemove={() => toggleItem(el)}
+            />
+          ))}
+        </div>
         <div>
           <button onClick={handleSave}>Save</button>
           <button onClick={handleCancel}>Cancel</button>

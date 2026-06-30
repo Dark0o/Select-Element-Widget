@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
-export interface ElementItem {
+export interface ElementItemType {
   id: number;
   name: string;
 }
 
 interface SelectElementWidgetStore {
-  elements: ElementItem[];
-  selectedElements: ElementItem[];
-  setSelectedElements: (elements: ElementItem[]) => void;
+  elements: ElementItemType[];
+  selectedElements: ElementItemType[];
+  setSelectedElements: (elements: ElementItemType[]) => void;
   isPanelOpen: boolean;
   setIsPanelOpen: (isOpen: boolean) => void;
 }

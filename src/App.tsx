@@ -1,14 +1,26 @@
 import SelectItemPanel from "./components/SelectItemPanel";
+import ElementItem from "./components/ElementItem";
 import { useSelectElementWidgetStore } from "./store/SelectElementWidgetStore";
 
 function App() {
-  const { isPanelOpen, setIsPanelOpen, selectedElements } =
+  const { isPanelOpen, setIsPanelOpen, selectedElements, setSelectedElements } =
     useSelectElementWidgetStore();
 
   return (
     <>
       <h1>Select items</h1>
       <p>You currently have {selectedElements.length} items selected.</p>
+      <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
+        {selectedElements.map((el) => (
+          <ElementItem
+            key={el.id}
+            name={el.name}
+            onRemove={() =>
+              setSelectedElements(selectedElements.filter((s) => s.id !== el.id))
+            }
+          />
+        ))}
+      </div>
       <button
         style={{ marginBottom: "8px" }}
         onClick={() => setIsPanelOpen(!isPanelOpen)}
