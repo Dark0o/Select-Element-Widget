@@ -12,6 +12,7 @@ A widget for selecting up to 3 items from a list of elements.
 
 npm install
 npm run dev
+Runs on http://localhost:3000
 
 ## Notes
 
