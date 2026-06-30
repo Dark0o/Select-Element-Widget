@@ -14,19 +14,34 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
   const { selectedElements, setSelectedElements } =
     useSelectElementWidgetStore();
 
+  const { setIsPanelOpen } = useSelectElementWidgetStore();
+
+  const [tempSelectedElements, setTempSelectedElements] = useState<
+    ElementItem[]
+  >([...selectedElements]);
+
+  const handleSave = () => {
+    setSelectedElements(tempSelectedElements);
+    setIsPanelOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsPanelOpen(false);
+  };
+
   console.log("Selected elements:", selectedElements);
 
   const toggleItem = (element: ElementItem) => {
     console.log("adding", element);
-    const isSelected = selectedElements.some((el) => el.id === element.id);
+    const isSelected = tempSelectedElements.some((el) => el.id === element.id);
 
     if (isSelected) {
-      setSelectedElements(
-        selectedElements.filter((el) => el.id !== element.id),
+      setTempSelectedElements(
+        tempSelectedElements.filter((el) => el.id !== element.id),
       );
     } else {
-      if (selectedElements.length >= 3) return;
-      setSelectedElements([...selectedElements, element]);
+      if (tempSelectedElements.length >= 3) return;
+      setTempSelectedElements([...tempSelectedElements, element]);
     }
   };
 
@@ -81,10 +96,12 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
               <input
                 type="checkbox"
                 onChange={() => toggleItem(element)}
-                checked={selectedElements.some((el) => el.id === element.id)}
+                checked={tempSelectedElements.some(
+                  (el) => el.id === element.id,
+                )}
                 disabled={
-                  selectedElements.length >= 3 &&
-                  !selectedElements.some((el) => el.id === element.id)
+                  tempSelectedElements.length >= 3 &&
+                  !tempSelectedElements.some((el) => el.id === element.id)
                 }
               />
               {element.name}
@@ -95,9 +112,13 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
 
       <div>
         Current selected items:
-        {selectedElements.map((el) => (
+        {tempSelectedElements.map((el) => (
           <span key={el.id}>{el.name}</span>
         ))}
+      </div>
+      <div>
+        <button onClick={handleSave}>Save</button>
+        <button onClick={handleCancel}>Cancel</button>
       </div>
     </div>
   );

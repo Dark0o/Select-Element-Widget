@@ -9,7 +9,8 @@ const elements: ElementItem[] = Array.from({ length: 100 }, (_, i) => ({
 }));
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const { isPanelOpen, setIsPanelOpen } = useSelectElementWidgetStore();
 
   const { selectedElements } = useSelectElementWidgetStore();
 
@@ -18,9 +19,11 @@ function App() {
     <>
       <h1>Select items</h1>
       <p>You currently have {selectedElements.length} items selected.</p>
-      <button onClick={() => setIsOpen(!isOpen)}>Change my choice</button>
+      <button onClick={() => setIsPanelOpen(!isPanelOpen)}>
+        Change my choice
+      </button>
 
-      {isOpen && <SelectItemPanel elements={elements} />}
+      {isPanelOpen && <SelectItemPanel elements={elements} />}
     </>
   );
 }
