@@ -1,20 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useSelectElementWidgetStore } from "../store/SelectElementWidgetStore";
-
-interface ElementItem {
-  id: number;
-  name: string;
-}
+import type { ElementItem } from "../store/SelectElementWidgetStore";
 
 const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
 
   //   const [selectedElements, setSelectedElements] = useState<ElementItem[]>([]);
-  const { selectedElements, setSelectedElements } =
+  const { selectedElements, setSelectedElements, setIsPanelOpen } =
     useSelectElementWidgetStore();
-
-  const { setIsPanelOpen } = useSelectElementWidgetStore();
 
   const [tempSelectedElements, setTempSelectedElements] = useState<
     ElementItem[]
@@ -48,14 +42,16 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
     }
   };
 
-  const filtered = elements
-    .filter((el) => el.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    .filter((el) => {
-      if (filterValue === "100") return el.id > 100;
-      if (filterValue === "2500") return el.id > 2500;
-      if (filterValue === "10000") return el.id > 10000;
-      return true;
-    });
+  const filtered = useMemo(() => {
+    return elements
+      .filter((el) => el.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      .filter((el) => {
+        if (filterValue === "100") return el.id > 100;
+        if (filterValue === "2500") return el.id > 2500;
+        if (filterValue === "10000") return el.id > 10000;
+        return true;
+      });
+  }, [elements, searchTerm, filterValue]);
 
   console.log("filtered", filtered);
   return (

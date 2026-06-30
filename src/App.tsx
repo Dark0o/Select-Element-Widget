@@ -3,7 +3,7 @@ import SelectItemPanel from "./components/SelectItemPanel";
 import type { ElementItem } from "./store/SelectElementWidgetStore";
 import { useSelectElementWidgetStore } from "./store/SelectElementWidgetStore";
 
-const elements: ElementItem[] = Array.from({ length: 100 }, (_, i) => ({
+const elements: ElementItem[] = Array.from({ length: 1000 }, (_, i) => ({
   id: i + 1,
   name: `Element ${i + 1}`,
 }));
