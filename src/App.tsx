@@ -18,6 +18,7 @@ function App() {
           <ElementItem
             key={el.id}
             name={el.name}
+            disabled={isPanelOpen}
             onRemove={() =>
               setSelectedElements(
                 selectedElements.filter((s) => s.id !== el.id),

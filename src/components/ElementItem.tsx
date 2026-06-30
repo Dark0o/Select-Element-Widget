@@ -3,16 +3,21 @@ import styles from "./ElementItem.module.css";
 interface Props {
   name: string;
   onRemove: () => void;
+  disabled?: boolean;
 }
 
-const ElementItem = ({ name, onRemove }: Props) => {
+const ElementItem = ({ name, onRemove, disabled }: Props) => {
   return (
     <div className={styles.badge}>
       <span>{name}</span>
-      <div className={styles.divider} />
-      <button className={styles.removeButton} onClick={onRemove}>
-        ×
-      </button>
+      {!disabled && (
+        <>
+          <div className={styles.divider} />
+          <button className={styles.removeButton} onClick={onRemove}>
+            ×
+          </button>
+        </>
+      )}
     </div>
   );
 };
