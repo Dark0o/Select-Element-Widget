@@ -3,11 +3,15 @@ import { useSelectElementWidgetStore } from "../store/SelectElementWidgetStore";
 import type { ElementItem } from "../store/SelectElementWidgetStore";
 
 import { List } from "react-window";
+import { useListRef } from "react-window";
+
 import RowComponent from "./RowComponent";
 
 const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
+
+  const listRef = useListRef(null);
 
   const { selectedElements, setSelectedElements, setIsPanelOpen } =
     useSelectElementWidgetStore();
@@ -55,6 +59,12 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
       });
   }, [elements, searchTerm, filterValue]);
 
+  const scrollToItem = (id: number) => {
+    const index = filtered.findIndex((el) => el.id === id);
+
+    listRef.current?.scrollToRow({ index });
+  };
+
   return (
     <div
       style={{
@@ -99,13 +109,16 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
             toggleItem,
             tempSelectedElements,
           }}
+          listRef={listRef}
         />
       </div>
 
       <div>
         Current selected items:
         {tempSelectedElements.map((el) => (
-          <span key={el.id}>{el.name}</span>
+          <span key={el.id}>
+            {el.name} <button onClick={() => scrollToItem(el.id)}>Find</button>
+          </span>
         ))}
       </div>
       <div>
