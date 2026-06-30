@@ -1,6 +1,7 @@
 import SelectItemPanel from "./components/SelectItemPanel";
 import ElementItem from "./components/ElementItem";
 import { useSelectElementWidgetStore } from "./store/SelectElementWidgetStore";
+import styles from "./App.module.css";
 
 function App() {
   const { isPanelOpen, setIsPanelOpen, selectedElements, setSelectedElements } =
@@ -22,6 +23,7 @@ function App() {
         ))}
       </div>
       <button
+        className={styles.changeButton}
         style={{ marginBottom: "8px" }}
         onClick={() => setIsPanelOpen(!isPanelOpen)}
       >

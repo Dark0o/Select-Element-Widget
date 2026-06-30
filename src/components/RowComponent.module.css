@@ -10,3 +10,7 @@
   cursor: pointer;
   width: 100%;
 }
+
+.label input {
+  accent-color: #1e293b;
+}
