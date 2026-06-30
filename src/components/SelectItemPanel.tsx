@@ -2,11 +2,13 @@ import { useMemo, useState } from "react";
 import { useSelectElementWidgetStore } from "../store/SelectElementWidgetStore";
 import type { ElementItem } from "../store/SelectElementWidgetStore";
 
+import { List } from "react-window";
+import RowComponent from "./RowComponent";
+
 const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
 
-  //   const [selectedElements, setSelectedElements] = useState<ElementItem[]>([]);
   const { selectedElements, setSelectedElements, setIsPanelOpen } =
     useSelectElementWidgetStore();
 
@@ -53,14 +55,12 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
       });
   }, [elements, searchTerm, filterValue]);
 
-  console.log("filtered", filtered);
   return (
     <div
       style={{
         border: "1px solid black",
         height: "500px",
         padding: "8px",
-        overflowY: "scroll",
       }}
     >
       <h3>Select items</h3>
@@ -88,24 +88,19 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
           </select>
         </label>
       </div>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-        {filtered.map((element) => (
-          <li key={element.id}>
-            <label>
-              <input
-                type="checkbox"
-                onChange={() => toggleItem(element)}
-                checked={isItemSelected(element.id)}
-                disabled={
-                  tempSelectedElements.length >= 3 &&
-                  !isItemSelected(element.id)
-                }
-              />
-              {element.name}
-            </label>
-          </li>
-        ))}
-      </ul>
+      <div style={{ height: "300px" }}>
+        <List
+          rowComponent={RowComponent}
+          rowCount={filtered.length}
+          rowHeight={25}
+          rowProps={{
+            elements: filtered,
+            isItemSelected,
+            toggleItem,
+            tempSelectedElements,
+          }}
+        />
+      </div>
 
       <div>
         Current selected items:

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SelectItemPanel from "./components/SelectItemPanel";
 import type { ElementItem } from "./store/SelectElementWidgetStore";
 import { useSelectElementWidgetStore } from "./store/SelectElementWidgetStore";
@@ -9,12 +8,9 @@ const elements: ElementItem[] = Array.from({ length: 1000 }, (_, i) => ({
 }));
 
 function App() {
-  // const [isOpen, setIsOpen] = useState(false);
-  const { isPanelOpen, setIsPanelOpen } = useSelectElementWidgetStore();
+  const { isPanelOpen, setIsPanelOpen, selectedElements } =
+    useSelectElementWidgetStore();
 
-  const { selectedElements } = useSelectElementWidgetStore();
-
-  console.log(elements);
   return (
     <>
       <h1>Select items</h1>
