@@ -39,6 +39,21 @@
   gap: 8px;
 }
 
+.filters input {
+  border: 1px solid #d1d5db;
+  border-radius: 3px;
+  padding: 4px 8px;
+  outline: none;
+}
+
+.filters select {
+  border: 1px solid #d3dbd1;
+  border-radius: 3px;
+  padding: 4px 8px;
+  min-width: 130px;
+  outline: none;
+}
+
 .list {
   height: 300px;
   padding: 8px 16px;

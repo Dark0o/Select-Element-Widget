@@ -62,7 +62,12 @@ const SelectItemPanel = () => {
     <div className={styles.panel}>
       <div className={styles.header}>
         <h3>Select items</h3>
-        <button className={styles.closeButton} onClick={() => setIsPanelOpen(false)}>X</button>
+        <button
+          className={styles.closeButton}
+          onClick={() => setIsPanelOpen(false)}
+        >
+          X
+        </button>
       </div>
 
       <div className={styles.filters}>
@@ -82,9 +87,9 @@ const SelectItemPanel = () => {
             onChange={(e) => setFilterValue(e.target.value)}
           >
             <option value="none">No filter</option>
-            <option value="100">&gt;100</option>
-            <option value="2500">&gt;2500</option>
-            <option value="10000">&gt;10000</option>
+            <option value="100">&gt; 100</option>
+            <option value="2500">&gt; 2500</option>
+            <option value="10000">&gt; 10000</option>
           </select>
         </label>
       </div>
@@ -119,8 +124,12 @@ const SelectItemPanel = () => {
           ))}
         </div>
         <div className={styles.actions}>
-          <button className={styles.saveButton} onClick={handleSave}>Save</button>
-          <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
+          <button className={styles.saveButton} onClick={handleSave}>
+            Save
+          </button>
+          <button className={styles.cancelButton} onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
