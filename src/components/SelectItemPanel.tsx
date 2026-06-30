@@ -69,13 +69,29 @@ const SelectItemPanel = () => {
     <div
       style={{
         border: "1px solid black",
-        height: "500px",
-        padding: "8px",
+        height: "600px",
       }}
     >
-      <h3>Select items</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          borderBottom: "1px solid black",
+          padding: "16px",
+        }}
+      >
+        <h3>Select items</h3>
+        <button onClick={() => setIsPanelOpen(false)}>X</button>
+      </div>
 
-      <div style={{ display: "flex", gap: "16px", marginBottom: "8px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+          padding: "16px",
+          borderBottom: "1px solid black",
+        }}
+      >
         <label>
           Search
           <input
@@ -98,7 +114,7 @@ const SelectItemPanel = () => {
           </select>
         </label>
       </div>
-      <div style={{ height: "300px" }}>
+      <div style={{ height: "300px", padding: "16px" }}>
         {filtered.length === 0 ? (
           <p>No elements match your search.</p>
         ) : (
@@ -117,17 +133,17 @@ const SelectItemPanel = () => {
         )}
       </div>
 
-      <div>
+      <div style={{ padding: "16px", borderTop: "1px solid black" }}>
         Current selected items:
         {tempSelectedElements.map((el) => (
           <span key={el.id}>
             {el.name} <button onClick={() => scrollToItem(el.id)}>Find</button>
           </span>
         ))}
-      </div>
-      <div>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <div>
+          <button onClick={handleSave}>Save</button>
+          <button onClick={handleCancel}>Cancel</button>
+        </div>
       </div>
     </div>
   );

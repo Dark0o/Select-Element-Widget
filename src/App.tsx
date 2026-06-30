@@ -9,7 +9,10 @@ function App() {
     <>
       <h1>Select items</h1>
       <p>You currently have {selectedElements.length} items selected.</p>
-      <button onClick={() => setIsPanelOpen(!isPanelOpen)}>
+      <button
+        style={{ marginBottom: "8px" }}
+        onClick={() => setIsPanelOpen(!isPanelOpen)}
+      >
         Change my choice
       </button>
 
