@@ -5,7 +5,7 @@ import ElementItem from "./ElementItem";
 
 import { List } from "react-window";
 
-import RowComponent from "./RowComponent";
+import RowComponent, { MAX_SELECTED_ITEMS } from "./RowComponent";
 import styles from "./SelectItemPanel.module.css";
 
 const SelectItemPanel = () => {
@@ -39,7 +39,7 @@ const SelectItemPanel = () => {
         tempSelectedElements.filter((el) => el.id !== element.id),
       );
     } else {
-      if (tempSelectedElements.length >= 3) return;
+      if (tempSelectedElements.length >= MAX_SELECTED_ITEMS) return;
       setTempSelectedElements([...tempSelectedElements, element]);
     }
   };

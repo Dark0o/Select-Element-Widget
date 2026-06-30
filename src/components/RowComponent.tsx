@@ -2,6 +2,8 @@ import { type RowComponentProps } from "react-window";
 import type { ElementItemType } from "../store/SelectElementWidgetStore";
 import styles from "./RowComponent.module.css";
 
+export const MAX_SELECTED_ITEMS = 3;
+
 interface RowProps {
   elements: ElementItemType[];
   isItemSelected: (id: number) => boolean;
@@ -26,7 +28,8 @@ const RowComponent = ({
           type="checkbox"
           checked={isItemSelected(element.id)}
           disabled={
-            tempSelectedElements.length >= 3 && !isItemSelected(element.id)
+            tempSelectedElements.length >= MAX_SELECTED_ITEMS &&
+            !isItemSelected(element.id)
           }
           onChange={() => toggleItem(element)}
         />
