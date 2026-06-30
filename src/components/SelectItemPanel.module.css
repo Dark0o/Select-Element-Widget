@@ -80,11 +80,17 @@
   border-top: 1px solid #ccc;
 }
 
+.selectedRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .selectedItems {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 8px 0;
 }
 
 .actions {

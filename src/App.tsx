@@ -10,14 +10,18 @@ function App() {
   return (
     <>
       <h1>Select items</h1>
-      <p className={styles.itemCount}>You currently have {selectedElements.length} items selected.</p>
+      <p className={styles.itemCount}>
+        You currently have {selectedElements.length} selected items.
+      </p>
       <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
         {selectedElements.map((el) => (
           <ElementItem
             key={el.id}
             name={el.name}
             onRemove={() =>
-              setSelectedElements(selectedElements.filter((s) => s.id !== el.id))
+              setSelectedElements(
+                selectedElements.filter((s) => s.id !== el.id),
+              )
             }
           />
         ))}

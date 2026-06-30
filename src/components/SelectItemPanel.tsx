@@ -113,15 +113,17 @@ const SelectItemPanel = () => {
       </div>
 
       <div className={styles.footer}>
-        <span className={styles.secondaryText}>Current selected items:</span>
-        <div className={styles.selectedItems}>
-          {tempSelectedElements.map((el) => (
-            <ElementItem
-              key={el.id}
-              name={el.name}
-              onRemove={() => toggleItem(el)}
-            />
-          ))}
+        <div className={styles.selectedRow}>
+          <span className={styles.secondaryText}>Current selected items:</span>
+          <div className={styles.selectedItems}>
+            {tempSelectedElements.map((el) => (
+              <ElementItem
+                key={el.id}
+                name={el.name}
+                onRemove={() => toggleItem(el)}
+              />
+            ))}
+          </div>
         </div>
         <div className={styles.actions}>
           <button className={styles.saveButton} onClick={handleSave}>
