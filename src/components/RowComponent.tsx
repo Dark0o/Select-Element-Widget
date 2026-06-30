@@ -20,20 +20,24 @@ const RowComponent = ({
   style,
 }: RowComponentProps<RowProps>) => {
   const element = elements[index];
+  const isDisabled =
+    tempSelectedElements.length >= MAX_SELECTED_ITEMS &&
+    !isItemSelected(element.id);
 
   return (
     <div style={style} className={styles.row}>
-      <label className={styles.label}>
+      <label
+        className={isDisabled ? styles.labelDisabled : styles.label}
+      >
         <input
           type="checkbox"
           checked={isItemSelected(element.id)}
-          disabled={
-            tempSelectedElements.length >= MAX_SELECTED_ITEMS &&
-            !isItemSelected(element.id)
-          }
+          disabled={isDisabled}
           onChange={() => toggleItem(element)}
         />
-        {element.name}
+        <span className={isDisabled ? styles.disabledText : undefined}>
+          {element.name}
+        </span>
       </label>
     </div>
   );

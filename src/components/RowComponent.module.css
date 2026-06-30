@@ -11,6 +11,24 @@
   width: 100%;
 }
 
+.labelDisabled {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+  width: 100%;
+}
+
 .label input {
   accent-color: #1e293b;
+  cursor: pointer;
+}
+
+.labelDisabled input {
+  accent-color: #1e293b;
+  cursor: default;
+}
+
+.disabledText {
+  color: #6b7280;
 }
