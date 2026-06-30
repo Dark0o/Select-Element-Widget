@@ -6,6 +6,7 @@ export interface ElementItem {
 }
 
 interface SelectElementWidgetStore {
+  elements: ElementItem[];
   selectedElements: ElementItem[];
   setSelectedElements: (elements: ElementItem[]) => void;
   isPanelOpen: boolean;
@@ -14,6 +15,10 @@ interface SelectElementWidgetStore {
 
 export const useSelectElementWidgetStore = create<SelectElementWidgetStore>(
   (set) => ({
+    elements: Array.from({ length: 1000 }, (_, i) => ({
+      id: i + 1,
+      name: `Element ${i + 1}`,
+    })),
     selectedElements: [],
     setSelectedElements: (elements) => set({ selectedElements: elements }),
     isPanelOpen: false,

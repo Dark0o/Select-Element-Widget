@@ -1,11 +1,5 @@
 import SelectItemPanel from "./components/SelectItemPanel";
-import type { ElementItem } from "./store/SelectElementWidgetStore";
 import { useSelectElementWidgetStore } from "./store/SelectElementWidgetStore";
-
-const elements: ElementItem[] = Array.from({ length: 1000 }, (_, i) => ({
-  id: i + 1,
-  name: `Element ${i + 1}`,
-}));
 
 function App() {
   const { isPanelOpen, setIsPanelOpen, selectedElements } =
@@ -19,7 +13,7 @@ function App() {
         Change my choice
       </button>
 
-      {isPanelOpen && <SelectItemPanel elements={elements} />}
+      {isPanelOpen && <SelectItemPanel />}
     </>
   );
 }

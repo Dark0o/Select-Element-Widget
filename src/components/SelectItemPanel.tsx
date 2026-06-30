@@ -7,13 +7,13 @@ import { useListRef } from "react-window";
 
 import RowComponent from "./RowComponent";
 
-const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
+const SelectItemPanel = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("none");
 
   const listRef = useListRef(null);
 
-  const { selectedElements, setSelectedElements, setIsPanelOpen } =
+  const { elements, selectedElements, setSelectedElements, setIsPanelOpen } =
     useSelectElementWidgetStore();
 
   const [tempSelectedElements, setTempSelectedElements] = useState<
@@ -99,18 +99,22 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
         </label>
       </div>
       <div style={{ height: "300px" }}>
-        <List
-          rowComponent={RowComponent}
-          rowCount={filtered.length}
-          rowHeight={25}
-          rowProps={{
-            elements: filtered,
-            isItemSelected,
-            toggleItem,
-            tempSelectedElements,
-          }}
-          listRef={listRef}
-        />
+        {filtered.length === 0 ? (
+          <p>No elements match your search.</p>
+        ) : (
+          <List
+            rowComponent={RowComponent}
+            rowCount={filtered.length}
+            rowHeight={25}
+            rowProps={{
+              elements: filtered,
+              isItemSelected,
+              toggleItem,
+              tempSelectedElements,
+            }}
+            listRef={listRef}
+          />
+        )}
       </div>
 
       <div>
