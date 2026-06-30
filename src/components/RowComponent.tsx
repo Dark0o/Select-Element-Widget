@@ -1,5 +1,6 @@
 import { type RowComponentProps } from "react-window";
 import type { ElementItemType } from "../store/SelectElementWidgetStore";
+import styles from "./RowComponent.module.css";
 
 interface RowProps {
   elements: ElementItemType[];
@@ -19,8 +20,8 @@ const RowComponent = ({
   const element = elements[index];
 
   return (
-    <div style={style}>
-      <label>
+    <div style={style} className={styles.row}>
+      <label className={styles.label}>
         <input
           type="checkbox"
           checked={isItemSelected(element.id)}
