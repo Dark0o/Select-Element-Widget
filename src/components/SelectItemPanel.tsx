@@ -28,13 +28,10 @@ const SelectItemPanel = () => {
     setIsPanelOpen(false);
   };
 
-  console.log("Selected elements:", selectedElements);
-
   const isItemSelected = (id: number) =>
     tempSelectedElements.some((el) => el.id === id);
 
   const toggleItem = (element: ElementItemType) => {
-    console.log("adding", element);
     const isSelected = isItemSelected(element.id);
 
     if (isSelected) {
