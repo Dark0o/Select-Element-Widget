@@ -31,9 +31,12 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
 
   console.log("Selected elements:", selectedElements);
 
+  const isItemSelected = (id: number) =>
+    tempSelectedElements.some((el) => el.id === id);
+
   const toggleItem = (element: ElementItem) => {
     console.log("adding", element);
-    const isSelected = tempSelectedElements.some((el) => el.id === element.id);
+    const isSelected = isItemSelected(element.id);
 
     if (isSelected) {
       setTempSelectedElements(
@@ -96,12 +99,10 @@ const SelectItemPanel = ({ elements }: { elements: ElementItem[] }) => {
               <input
                 type="checkbox"
                 onChange={() => toggleItem(element)}
-                checked={tempSelectedElements.some(
-                  (el) => el.id === element.id,
-                )}
+                checked={isItemSelected(element.id)}
                 disabled={
                   tempSelectedElements.length >= 3 &&
-                  !tempSelectedElements.some((el) => el.id === element.id)
+                  !isItemSelected(element.id)
                 }
               />
               {element.name}
