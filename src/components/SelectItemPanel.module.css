@@ -58,6 +58,21 @@
   height: 300px;
   padding: 8px 16px;
   overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.list :global(::-webkit-scrollbar) {
+  width: 5px;
+}
+
+.list :global(::-webkit-scrollbar-track) {
+  background: transparent;
+}
+
+.list :global(::-webkit-scrollbar-thumb) {
+  background-color: #cbd5e1;
+  border-radius: 4px;
 }
 
 .footer {
@@ -76,6 +91,10 @@
   display: flex;
   gap: 8px;
   margin-top: 8px;
+}
+
+.secondaryText {
+  color: #6b7280;
 }
 
 .saveButton {

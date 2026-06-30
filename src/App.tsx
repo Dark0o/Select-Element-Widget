@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <h1>Select items</h1>
-      <p>You currently have {selectedElements.length} items selected.</p>
+      <p className={styles.itemCount}>You currently have {selectedElements.length} items selected.</p>
       <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
         {selectedElements.map((el) => (
           <ElementItem

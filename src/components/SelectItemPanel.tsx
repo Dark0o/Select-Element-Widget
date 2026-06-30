@@ -96,7 +96,7 @@ const SelectItemPanel = () => {
 
       <div className={styles.list}>
         {filtered.length === 0 ? (
-          <p>No elements match your search.</p>
+          <p className={styles.secondaryText}>No elements match your search.</p>
         ) : (
           <List
             rowComponent={RowComponent}
@@ -113,7 +113,7 @@ const SelectItemPanel = () => {
       </div>
 
       <div className={styles.footer}>
-        Current selected items:
+        <span className={styles.secondaryText}>Current selected items:</span>
         <div className={styles.selectedItems}>
           {tempSelectedElements.map((el) => (
             <ElementItem
