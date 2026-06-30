@@ -6,6 +6,7 @@ import ElementItem from "./ElementItem";
 import { List } from "react-window";
 
 import RowComponent from "./RowComponent";
+import styles from "./SelectItemPanel.module.css";
 
 const SelectItemPanel = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,32 +59,13 @@ const SelectItemPanel = () => {
   }, [elements, searchTerm, filterValue]);
 
   return (
-    <div
-      style={{
-        border: "1px solid black",
-        height: "600px",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          borderBottom: "1px solid black",
-          padding: "16px",
-        }}
-      >
+    <div className={styles.panel}>
+      <div className={styles.header}>
         <h3>Select items</h3>
-        <button onClick={() => setIsPanelOpen(false)}>X</button>
+        <button className={styles.closeButton} onClick={() => setIsPanelOpen(false)}>X</button>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "16px",
-          padding: "16px",
-          borderBottom: "1px solid black",
-        }}
-      >
+      <div className={styles.filters}>
         <label>
           Search
           <input
@@ -106,7 +88,8 @@ const SelectItemPanel = () => {
           </select>
         </label>
       </div>
-      <div style={{ height: "300px", padding: "16px" }}>
+
+      <div className={styles.list}>
         {filtered.length === 0 ? (
           <p>No elements match your search.</p>
         ) : (
@@ -124,9 +107,9 @@ const SelectItemPanel = () => {
         )}
       </div>
 
-      <div style={{ padding: "16px", borderTop: "1px solid black" }}>
+      <div className={styles.footer}>
         Current selected items:
-        <div style={{ display: "flex", gap: "8px", margin: "8px 0" }}>
+        <div className={styles.selectedItems}>
           {tempSelectedElements.map((el) => (
             <ElementItem
               key={el.id}
@@ -135,9 +118,9 @@ const SelectItemPanel = () => {
             />
           ))}
         </div>
-        <div>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+        <div className={styles.actions}>
+          <button className={styles.saveButton} onClick={handleSave}>Save</button>
+          <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
         </div>
       </div>
     </div>

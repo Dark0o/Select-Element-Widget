@@ -1,0 +1,64 @@
+.panel {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.header h3 {
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.list {
+  height: 300px;
+  padding: 8px 16px;
+  overflow: hidden;
+}
+
+.footer {
+  padding: 12px 16px;
+  border-top: 1px solid #ccc;
+}
+
+.selectedItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.saveButton {
+  cursor: pointer;
+}
+
+.cancelButton {
+  cursor: pointer;
+}
